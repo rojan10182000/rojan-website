@@ -1,0 +1,621 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600');
+//@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+// Color Variables
+$light-mode-background: linear-gradient(to right top, #ececec, #efefef, #f3f3f3, #f6f6f6, #fafafa, #f2f3f8, #e8ecf5, #dce6f3, #b7d7e6, #90c9d0, #74baae, #6ca883);
+$dark-mode-background: linear-gradient(to right top, #000d0b, #000d0b, #000d0b, #000d0a, #000d0a, #0b1a17, #112421, #15302b, #1e4c43, #28695d, #328877, #3ca892);
+
+$light-mode-text: rgb(27, 26, 26);
+$dark-mode-text: #fff;
+
+$light-mode-clock-background: #f0f0f0;
+$dark-mode-clock-background: rgba(0, 0, 0, 0.15);
+
+$light-mode-button-background: #f0f0f0;
+$dark-mode-button-background: #323734;
+
+$light-mode-footer-background: rgba(255, 255, 255, 0.5);
+$dark-mode-footer-background: transparent;
+
+$light-mode-footer-text: #000;
+$dark-mode-footer-text: #fff;
+
+$dark-mode-font: #ffffff;
+
+// Body and Background
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: $dark-mode-background;
+  color: $dark-mode-text;
+  transition: background 0.3s ease, color 0.3s ease;
+
+  &.light-mode {
+    background: $light-mode-background;
+    color: $light-mode-text;
+  }
+
+  .clock, .btn-flip, .footer, .toggle-switch-bar {
+    background-color: $dark-mode-clock-background;
+    color: $dark-mode-text;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &.light-mode {
+      background-color: $light-mode-clock-background;
+      color: $light-mode-text;
+    }
+  }
+
+  .toggle-switch-bar {
+    background-color: #ccc;
+    
+    &.light-mode {
+      background-color: #ccc;
+    }
+  }
+
+  .footer {
+    background: $dark-mode-footer-background;
+    color: $dark-mode-footer-text;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+
+    &.light-mode {
+      background: $light-mode-footer-background;
+      color: $light-mode-footer-text;
+    }
+  }
+}
+
+#icon {
+  position: absolute;
+  justify-content: center;
+  left: 220px;
+  top: 220px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    transform: scale(1.25);
+  }
+}
+
+#rojan {
+    position: absolute;
+    justify-content: center;
+    left: 260px;
+    top: 227px;
+    text-transform: uppercase;
+    font-size: 16px
+}
+
+// Header with clock and toggle switch
+.header {
+  position: absolute;
+  display: flex;
+  gap: 25px;
+  top: 5px;
+  left: 73%;
+  width: 100%;
+  display: flex;
+  //justify-content: space-between;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+// Clock styles
+.clock {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: bold;
+  color: inherit;
+  box-shadow: 0 4px 10px rgb(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgb(0, 0, 0, 0.25);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgb(0, 0, 0, 0.5);
+  }
+}
+
+.time {
+  display: flex;
+  align-items: center;
+
+  .separator {
+    margin: 0 5px;
+  }
+
+  .hours, .minutes, .seconds {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    margin: 0 5px;
+    padding: 5px;
+    box-shadow: 0 2px 4px rgb(0, 0, 0, 0.75);
+    border-radius: 7.5px;
+  }
+
+  .am-pm {
+    font-size: 12px;
+    margin-left: 5px;
+  }
+}
+
+// Toggle switch styles
+.toggle-switch-container {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  &:hover {
+    transform: scale(1.25);
+  }
+
+  .toggle-switch-bar {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+    border-radius: 10px;
+    border: rgba(0, 55, 41, 0.75) solid 1.5px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+    }
+
+    &.light-mode::before {
+      background-color: white;
+    }
+  }
+
+  .toggle-switch-check {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggle-switch-check:checked + .toggle-switch-bar {
+    background-color: #005c54ad;
+    border-radius: 10px;
+    border: rgba(255, 255, 255, 0.75) solid 1.5px;
+  }
+
+  .toggle-switch-check:checked + .toggle-switch-bar::before {
+    transform: translateX(14px);
+  }
+}
+
+// Light mode text
+.mode-text {
+  color: inherit;
+  font-size: 16px;
+  margin-left: 10px;
+  text-transform: uppercase;
+  //font-family: "Archivo Black", sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 3px;
+}
+
+// Text and word animation
+.text-container {
+  display: flex;
+  align-items: center;
+  margin-left: -700px;
+}
+
+.text {
+  margin-right: 10px;
+  white-space: nowrap;
+  color: inherit;
+  font-size: 25px;
+}
+
+.words {
+  margin-bottom: 7px;
+  font-weight: 900;
+}
+
+.word {
+  position: absolute;
+  opacity: 0;
+  white-space: nowrap;
+  margin-right: 200px;
+  align-items: center;
+
+  &.wisteria { color: #00ffff; }
+  &.belize { color: #3cff00; }
+  &.pomegranate { color: #ff1900; }
+  &.green { color: #d400ff; }
+  &.midnight { color: #ff0040; }
+}
+
+.letter {
+  display: inline-block;
+  position: relative;
+  transform: translateZ(25px);
+  transform-origin: 50% 50% 25px;
+
+  &.out {
+    transform: rotateX(90deg);
+    transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  &.behind {
+    transform: rotateX(-90deg);
+  }
+
+  &.in {
+    transform: rotateX(0deg);
+    transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
+
+// Flip button
+.btn-flip {
+    position: absolute;
+    right: 910px;
+    top: 70%;
+    transform: translateY(-50%);
+    padding: 2px;
+    opacity: 1;
+    outline: 0;
+    color: inherit;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: 1px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: rgba(15, 30, 30, 0.5) !important;
+    border-radius: 20px !important;
+    box-shadow: none !important; // Remove any box-shadow
+  
+    &:hover {
+      &:after {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+        background: rgba(0, 32, 37, 0.623) !important;
+        border-radius: 20px !important;
+        padding: 2px;
+      }
+  
+      &:before {
+        opacity: 0;
+        transform: translateY(50%) rotateX(90deg);
+        background: rgba(0, 50, 50, 0.75) !important;
+      }
+    }
+  
+    &:after {
+      top: 0;
+      left: 0;
+      opacity: 0;
+      width: 100%;
+      color: inherit;
+      display: block;
+      transition: 0.5s;
+      position: absolute;
+      background: transparent !important; // Ensure no background
+      box-shadow: none !important; // Remove any shadow
+      content: attr(data-back);
+      transform: translateY(-50%) rotateX(90deg);
+      border-radius: 20px;
+      border: none !important; // Ensure no border
+      
+    }
+  
+    &:before {
+      top: 0;
+      left: 0;
+      opacity: 1;
+      color: #ffffffd2;
+      display: block;
+      padding: 0 20px;
+      line-height: 40px;
+      transition: 0.5s;
+      position: relative;
+      background: transparent !important; // Ensure no background
+      content: attr(data-front);
+      transform: translateY(0) rotateX(0);
+      border-radius: 20px;
+      border: none !important; // Ensure no border
+    }
+  }
+  
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  max-height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: $dark-mode-footer-background;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+// Footer left styles
+#footer-left {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+}
+.dark-mode {
+    #footer-left {
+        color: white;
+        // font-size: 14px;
+    }
+}
+
+// #social-link {
+//   color: rgba(0, 0, 0, 0.75);
+//   font-size: 20px;
+//   text-decoration: none;
+//   padding-left: 20px;
+//   display: inline-block;
+//   transition: transform 0.3s ease, color 0.3s ease;
+// }
+// #social-link:hover {
+//   color: #00ffff;
+//   transform: scale(1.2);
+// }
+
+// .dark-mode #social-link {
+//   color: white;
+// }
+// .dark-mode #social-link:hover {
+//   color: #b3ff00;
+//   transform: scale(1.2);
+// }
+
+/* social-link-fb */
+#social-link-fb {
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 20px;
+  text-decoration: none;
+  padding-left: 15px;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative; /* Required for the tooltip positioning */
+
+  /* Tooltip styles */
+  &::after {
+    content: "Facebook"; /* Text that appears on hover */
+    position: absolute;
+    top: -30px; /* Position the tooltip below the icon */
+    left: 70%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.3); /* Background color of tooltip */
+    color: white; /* Text color */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+#social-link-fb:hover {
+  color: #1877F2;
+  transform: scale(1.2);
+}
+
+.dark-mode #social-link-fb{
+  color: white;
+}
+.dark-mode #social-link-fb:hover {
+  color: #1877F2;
+  transform: scale(1.2);
+}
+
+
+// // Footer right styles
+// #social-link-insta {
+//   display: inline-block;
+//   transition: transform 0.3s ease, color 0.3s ease;
+// }
+
+// .social-icon {
+//   width: 24px; /* Adjust the size as needed */
+//   height: 24px;
+//   transition: filter 0.3s ease, transform 0.3s ease;
+
+//   /* Light mode: SVG appears in its original colors */
+//   filter: brightness(0);
+// }
+
+// /* Hover effect: Original gradient color appears */
+// #social-link-insta:hover .social-icon {
+//   filter: none; /* No filter, shows the original SVG colors */
+//   transform: scale(1.2); /* Enlarges the SVG */
+// }
+
+// /* Dark mode: SVG is white */
+// .dark-mode .social-icon {
+//   filter: brightness(0) invert(1); /* Makes the SVG white */
+// }
+
+// /* Dark mode hover effect: Shows original colors */
+// .dark-mode #social-link-insta:hover .social-icon {
+//   filter: none; /* Removes the white color, shows the original SVG colors */
+// }
+
+/* social-link-tg */
+#social-link-tg {
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 20px;
+  text-decoration: none;
+  padding-left: 15px;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative; /* Required for the tooltip positioning */
+
+  /* Tooltip styles */
+  &::after {
+    content: "Telegram"; /* Text that appears on hover */
+    position: absolute;
+    top: -30px; /* Position the tooltip below the icon */
+    left: 70%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.3); /* Background color of tooltip */
+    color: white; /* Text color */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+#social-link-tg:hover {
+  color: #24A1DE;
+  transform: scale(1.2);
+}
+
+.dark-mode #social-link-tg {
+  color: white;
+}
+
+.dark-mode #social-link-tg:hover {
+  color: #24A1DE;
+  transform: scale(1.2);
+}
+
+/* social-link-yt */
+#social-link-yt{
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 20px;
+  text-decoration: none;
+  padding-left: 15px;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative;
+
+  &::after {
+    content: "WhatsApp"; /* Text that appears on hover */
+    position: absolute;
+    top: -30px; /* Position the tooltip below the icon */
+    left: 70%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.3); /* Background color of tooltip */
+    color: white; /* Text color */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+#social-link-yt:hover {
+  color: #da0000;
+  transform: scale(1.2);
+}
+
+.dark-mode #social-link-yt {
+  color: white;
+}
+
+.dark-mode #social-link-yt:hover {
+  color: #da0000;
+  transform: scale(1.2);
+}
+
+/* social-link-wapp */
+#social-link-wapp {
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 20px;
+  text-decoration: none;
+  padding-left: 15px;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative; /* Required for the tooltip positioning */
+
+  /* Tooltip styles */
+  &::after {
+    content: "WhatsApp"; /* Text that appears on hover */
+    position: absolute;
+    top: -30px; /* Position the tooltip below the icon */
+    left: 70%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.3); /* Background color of tooltip */
+    color: white; /* Text color */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+#social-link-wapp:hover {
+  color: #1ea750;
+  transform: scale(1.2);
+}
+
+.dark-mode #social-link-wapp {
+  color: white;
+}
+
+.dark-mode #social-link-wapp:hover {
+  color: #1ea750;
+  transform: scale(1.2);
+}

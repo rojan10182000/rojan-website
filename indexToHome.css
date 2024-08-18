@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    background: linear-gradient(to right top, #000d0b, #000d0b, #000d0b, #000d0a, #000d0a, #0b1a17, #112421, #15302b, #1e4c43, #28695d, #328877, #3ca892);
+}
+.back-button {
+    position: fixed; /* Keeps the button fixed in place */
+    top: 15px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    z-index: 1000; /* Ensures the button is above other elements */
+    display: flex; /* Centers the image */
+    align-items: center;
+    /* justify-content: center; */
+    text-decoration: none;
+}
+
+.back-button img {
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    margin-right: -130px; /* Space between the image and the text */
+
+    &:hover {
+        transform: scale(1.05);
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        border-radius: 50%; */
+    }
+}
+
+.ty {
+    position: absolute;
+    top: 20px; /* Adjust this value to position closer/farther from the top */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 14px;
+}
+
+#note {
+    color: rgb(71, 204, 175);
+    text-align: center;
+    width: auto;
+}
+
+#message {
+    text-align: justify;
+    width: auto;
+    text-indent: 40px;
+    color: rgba(255, 255, 255, 0.8);
+}
+  
+p {
+    text-align: center;      /* Centers text within the paragraph */
+    color: white;
+    width: 200px;
+    font-size: 14px;
+    width: 300px;   
+}
+
+.dropbtn {
+    background-color: rgba(30, 100, 85, 0.5);
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 20px auto 0; /* Center button horizontally and add margin on top */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px;
+}
+
+.dropdown p {
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    top: -10%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.75);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.dropdown-content a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.dropdown-content a.placeholder {
+    color: #888;
+    font-style: italic;
+    pointer-events: none;
+    font-size: 14px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.quote-container {
+    position: absolute;
+    bottom: 70px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.1); /* Slightly transparent background */
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 1000px; /* Set width to 1000px */
+    height: 80px;
+    text-align: center; /* Center text horizontally */
+}
+
+#quote {
+    font-size: 20px; /* Adjust the font size as needed */
+    color: #ffffff; /* Dark text color for contrast */
+    white-space: nowrap; /* Ensure the quote stays on one line */
+    overflow: visible; /* Make sure text is not clipped */
+    display: inline-block; /* Ensure the quote itself is treated as inline-block for centering */
+    text-align: center; /* Center the text within the quote */
+    width: 100%; /* Ensure the quote spans the full width of the container */
+    font-size: 14px;
+}
+
+#quote i {
+    font-style: italic; /* Style the italic text */
+}
+
+#new-quote {
+    background-color: rgba(30, 100, 85, 0.5);
+    color: white;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    display: block; /* Ensure the button is a block element */
+    margin: 20px auto 0; /* Center button horizontally and add margin on top */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px;
+}
+
+#new-quote:hover {
+    background-color: #3e8e41;
+}

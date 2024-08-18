@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ROJAN</title>
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+    <link rel="stylesheet" href="indexToHome.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet'>
+</head>
+<body>
+    <a href="index.html" class="back-button">
+        <img src="return.png" alt="Back">
+    </a>
+    <div class="ty">
+        <p id="note">Note for New Users: </p>
+        <p id="message">To help me better understand who is visiting this page, please answer the question in the center of the page. Your response will assist me in recording visitor information and improving the development of my website. Thank you!</p>
+    </div>
+
+    <div class="quote-container">
+        <p id="quote">Wanna start your day with a quote? Click New Quote.</strong></p>
+        <button id="new-quote">New Quote</button>
+    </div>
+
+    <div class="dropdown">
+        <p>I want to know more about you</p>
+        <button class="dropbtn">You are a?</button>
+        <div class="dropdown-content">
+            <a href="#" class="placeholder">Select an option</a>
+            <a href="message.html?selection=Visitor">Visitor</a>
+            <a href="message.html?selection=Programmer">Programmer</a>
+            <a href="message.html?selection=Employer">Employer</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle placeholder behavior
+        document.querySelectorAll('.dropdown-content a').forEach(link => {
+            if (link.classList.contains('placeholder')) {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                });
+            }
+        });
+
+        // JavaScript for random quote generator
+        const quotes = [
+            "<i>The only way to do great work is to love what you do.</i> - Steve Jobs",
+            "<i>The best way to predict the future is to invent it.</i> - Alan Kay",
+            "<i>Believe you can and you're halfway there.</i> - Theodore Roosevelt",
+            "<i>The future depends on what you do today.</i> - Mahatma Gandhi",
+            "<i>Opportunities are like sunrises. If you wait too long, you miss them.</i> - William Arthur Ward"
+        ];
+
+        const quoteDisplay = document.getElementById('quote');
+        const newQuoteButton = document.getElementById('new-quote');
+
+        newQuoteButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteDisplay.innerHTML = quotes[randomIndex]; // Use innerHTML to render HTML tags
+        });
+    </script>
+</body>
+</html>

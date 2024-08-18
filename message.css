@@ -1,0 +1,147 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right top, #000d0b, #000d0b, #000d0b, #000d0a, #000d0a, #0b1a17, #112421, #15302b, #1e4c43, #28695d, #328877, #3ca892);
+}
+.back-button {
+    position: fixed; /* Keeps the button fixed in place */
+    top: 15px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    z-index: 1000; /* Ensures the button is above other elements */
+    display: flex; /* Centers the image */
+    align-items: center;
+    /* justify-content: center; */
+    text-decoration: none;
+}
+
+.back-button img {
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    margin-right: -130px; /* Space between the image and the text */
+
+    &:hover {
+        transform: scale(1.05);
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        border-radius: 50%; */
+    }
+}
+
+
+h1 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 16px;
+    width: 600px;
+    text-align: justify;
+    text-indent: 50px;
+    line-height: 25px;
+    border: transparent;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.75);
+    padding: 20px;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+}
+#message-container {
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}
+
+.message {
+    display: none; /* Hide all messages by default */
+    flex-direction: column; /* Stack image on top of text */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+}
+
+.message.show {
+    display: flex; /* Show only the message with 'show' class */
+}
+
+.message img {
+    margin-bottom: 10px; /* Space between the GIF and the text */
+    width: 50px; /* Adjust size of the GIF */
+    height: auto; /* Maintain aspect ratio */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.75);
+
+    &:hover {
+        transform: scale(1.10);
+    }
+}
+
+#visitor {
+    width: 40px;
+    height: 40px;
+}
+
+/* Continue button styles */
+#continue-container {
+    position: relative; /* Ensure positioning of tooltip is relative to button */
+    display: inline-block;
+}
+
+#continue {
+    background-color: rgba(30, 100, 85, 0.5);
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin: 20px auto 0; /* Center button horizontally and add margin on top */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px;
+
+    &:hover {
+        background-color: #3e8e41;
+    }
+}
+
+/* Tooltip styling */
+.tooltip-text {
+    visibility: hidden; /* Hidden by default */
+    width: 150px; /* Adjust width as needed */
+    background-color: transparent; /* Background color of tooltip */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.75);
+    color: #fff; /* Text color */
+    text-align: center; /* Center align text */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px; /* Padding inside tooltip */
+    position: absolute; /* Position tooltip relative to button */
+    top: 125%; /* Position above the button */
+    left: 50%;
+    margin-left: -80px; /* Center the tooltip horizontally */
+    opacity: 0; /* Start with hidden tooltip */
+    transition: opacity 0.3s; /* Smooth transition for tooltip visibility */
+    z-index: 1; /* Ensure tooltip is above other elements */
+}
+
+/* Tooltip arrow */
+.tooltip-text::after {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* Position the arrow at the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px; /* Center the arrow */
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent; /* Arrow color */
+    transform: rotate(180deg)
+}
+
+/* Show tooltip on button hover */
+#continue:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1; /* Make tooltip visible */
+}
